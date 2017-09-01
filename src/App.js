@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import Storage from './components/Storage'
 import Container from './components/Container'
+import {BrowserRouter as Router, Link} from 'react-router-dom'
 import './App.css';
 
 class App extends Component {
@@ -31,7 +32,7 @@ class App extends Component {
     })
   }
 
-  saveGiph = (url) => {
+  saveGiphy = (url) => {
     this.setState({
       giphys: [...this.state.giphys, url]
     })
@@ -43,24 +44,28 @@ class App extends Component {
       case "saved":
         return <Storage jokes={this.state.jokes} giphys={this.state.giphys} />
       case "container":
-        return <Container saveJoke={this.saveJoke} showSavedItems={this.showSavedItems}/>
+        return <Container saveGiphy={this.saveGiphy} saveJoke={this.saveJoke} showSavedItems={this.showSavedItems}/>
       default:
         console.log("Heyyyyyy")
     }
   }
 
-
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          
+          <h2>Chuck Norris Jokes'n Giphs</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          
         </p>
-
+        <div>
+        <Router></Router>
+        <Router></Router>
+        <Router></Router>
+        <Router></Router>
+        </div>
         {this.toggleDisplay()}
 
 

@@ -10,7 +10,7 @@ class Container extends React.Component {
 			currentGiphy: null,
 			clickOptions: {
 				next: this.reload, 
-				save: this.handleSaveJoke
+				save: this.handleSave
 			}
 		}
 	}
@@ -38,16 +38,33 @@ class Container extends React.Component {
 
 	}
 
+	handleSave = (event) => {
+		switch (event.target.name) {
+			case "giphy":
+				this.handleSaveGiphy()
+			break;
+			case "joke":
+				this.handleSaveJoke()
+			break;
+			default: 
+				console.log("hiiiiii")
+		}
+	}
+
 	handleSaveJoke = () => {
 		this.props.saveJoke(this.state.currentJoke)
 	}
+
+	handleSaveGiphy = () => {
+		this.props.saveGiphy(this.state.currentGiphy)
+	} 
 
 
 	render(){
 		return (
 			<div>
-				<Joke joke={this.state.currentJoke} saveJoke={this.handleSaveJoke} clickOptions={this.state.clickOptions}/>
-				<Giphy giphy={this.state.currentGiphy}/>
+				<Joke joke={this.state.currentJoke} saveJoke={this.handleSave} clickOptions={this.state.clickOptions}/>
+				<Giphy giphy={this.state.currentGiphy} saveGiphy={this.handleSave} clickOptions={this.state.clickOptions}/>
 				<button onClick={this.props.showSaved}>Show Saved Items</button>
 			</div>
 
