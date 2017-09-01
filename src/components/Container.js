@@ -8,8 +8,16 @@ class Container extends React.Component {
 		this.state = {
 			currentJoke: null,
 			currentGiphy: null,
-			clickOptions: ["next", "save"]
+			clickOptions: {
+				next: this.reload, 
+				save: this.handleSaveJoke
+			}
 		}
+	}
+
+	reload = () => {
+		this.getJoke();
+		this.getGiphy();
 	}
 
 	getJoke = () => {
@@ -30,11 +38,15 @@ class Container extends React.Component {
 
 	}
 
+	handleSaveJoke = () => {
+		this.props.saveJoke(this.state.currentJoke)
+	}
+
 
 	render(){
 		return (
 			<div>
-				<Joke joke={this.state.currentJoke} saveJoke={this.props.saveJoke} clickOptions={this.state.clickOptions}/>
+				<Joke joke={this.state.currentJoke} saveJoke={this.handleSaveJoke} clickOptions={this.state.clickOptions}/>
 				<Giphy giphy={this.state.currentGiphy}/>
 				<button onClick={this.props.showSaved}>Show Saved Items</button>
 			</div>
