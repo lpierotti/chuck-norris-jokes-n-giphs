@@ -1,15 +1,12 @@
 import React from 'react';
 
-function sampler(){
-	Math.floor(Math.random()*40 + 1)
-}
-
 class Container extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			currentJoke: null,
 			currentGiphy: null
+			clickOptions: ["next", "save"]
 		}
 	}
 
@@ -22,18 +19,21 @@ class Container extends React.Component {
 	getGiphy = () => {
 		fetch('https://api.giphy.com/v1/gifs/search?q=chuck+norris&api_key=64db678ec9b14166b11841c927a4f28f&limit=40')
 			.then(resp => resp.json())
-			.then(json => this.setState({currentGiphy: json.sample()})) 
+			.then(json => this.setState({currentGiphy: json.data[sampler()].images.fixed_height.url}))
 	}
 
-	componetDidMount() {
+	componentDidMount() {
+		this.getJoke()
+		this.getGiphy()
 
 	}
 
 	render(){
 		return (
 			<div>
-				<Joke joke={this.state.currentJoke}/>
+				<Joke joke={this.state.currentJoke} onClick={this.state.clickOptions} clickOptions={this.state.clickOptions}/>
 				<Giphy giphy={this.state.currentGiphy}/>
+				<button onClick={this.props.showSaved}>Show Saved Items</button>
 			</div>
 
 		)
@@ -45,3 +45,7 @@ class Container extends React.Component {
 
 
 export default Container
+
+function sampler(){
+	Math.floor(Math.random() * 40 + 1)
+}

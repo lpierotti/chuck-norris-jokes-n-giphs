@@ -3,12 +3,19 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  
+
   constructor() {
     super();
     this.state = {
-      
+      jokes: [],
+      giphys: []
+
     }
+  }
+
+  showSavedItems = () => {
+    //routes to the storage bin
+    //passes this.state.storedItems
   }
 
 
@@ -22,6 +29,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <Container showSavedItems={this.showSavedItems}/>
       </div>
     );
   }
