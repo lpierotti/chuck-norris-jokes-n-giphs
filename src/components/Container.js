@@ -1,11 +1,13 @@
 import React from 'react';
+import Giphy from './Giphy'
+import Joke from './Joke'
 
 class Container extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			currentJoke: null,
-			currentGiphy: null
+			currentGiphy: null,
 			clickOptions: ["next", "save"]
 		}
 	}
@@ -28,10 +30,11 @@ class Container extends React.Component {
 
 	}
 
+
 	render(){
 		return (
 			<div>
-				<Joke joke={this.state.currentJoke} onClick={this.state.clickOptions} clickOptions={this.state.clickOptions}/>
+				<Joke joke={this.state.currentJoke} saveJoke={this.props.saveJoke} clickOptions={this.state.clickOptions}/>
 				<Giphy giphy={this.state.currentGiphy}/>
 				<button onClick={this.props.showSaved}>Show Saved Items</button>
 			</div>
@@ -47,5 +50,6 @@ class Container extends React.Component {
 export default Container
 
 function sampler(){
-	Math.floor(Math.random() * 40 + 1)
+	return Math.floor(Math.random() * 40 + 1)
+
 }
