@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import Storage from './components/Storage'
 import Container from './components/Container'
-import {BrowserRouter as Router, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+
 import './App.css';
 
 class App extends Component {
@@ -60,12 +61,15 @@ class App extends Component {
         <p className="App-intro">
           
         </p>
-        <div>
-        <Router></Router>
-        <Router></Router>
-        <Router></Router>
-        <Router></Router>
-        </div>
+        
+        <Router>
+          <div>
+            <Route exact path="/random" render={() => <Container jokes={this.state.jokes} giphys={this.state.giphys}/>}/>
+            <Route exact path="/savedItems" render={() => <Storage jokes={this.state.jokes} giphys={this.state.giphys}/>}/>
+          </div>
+        </Router>
+        
+        
         {this.toggleDisplay()}
 
 

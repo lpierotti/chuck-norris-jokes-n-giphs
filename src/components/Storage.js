@@ -4,7 +4,7 @@ import Giphy from './Giphy'
 
 const Storage = (props) =>{
 	const jokes = props.jokes.map(joke => <Joke joke={joke}/>)
-	const giphs = props.giphs.map(giphy => <Giphy giphy={giphy}/>)
+	const giphs = props.giphys.map(giphy => <Giphy giphy={giphy}/>)
 	return ( 
 		<div>
 			{jokes} 
