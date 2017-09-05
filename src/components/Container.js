@@ -21,9 +21,9 @@ class Container extends React.Component {
 	}
 
 	getJoke = () => {
-		fetch('https://api.chucknorris.io/jokes/random')
+		fetch('http://api.icndb.com/jokes/random')
 			.then(resp => resp.json())
-			.then(json => this.setState({currentJoke: json.value}))
+			.then(json => this.setState({currentJoke: json.value.joke}))
 	}
 
 	getGiphy = () => {
@@ -65,7 +65,6 @@ class Container extends React.Component {
 			<div>
 				<Joke joke={this.state.currentJoke} saveJoke={this.handleSave} clickOptions={this.state.clickOptions}/>
 				<Giphy giphy={this.state.currentGiphy} saveGiphy={this.handleSave} clickOptions={this.state.clickOptions}/>
-				<button onClick={this.props.showSaved}>Show Saved Items</button>
 			</div>
 
 		)

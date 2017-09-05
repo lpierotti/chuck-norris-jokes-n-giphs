@@ -12,18 +12,8 @@ class App extends Component {
     super();
     this.state = {
       jokes: [],
-      giphys: [],
-      display: "container"
-
+      giphys: []
     }
-  }
-
-  showSavedItems = () => {
-    this.setState({
-      display: "saved"
-    })
-    //routes to the storage bin
-    //passes this.state.storedItems
   }
 
   saveJoke = (joke) => {
@@ -39,17 +29,17 @@ class App extends Component {
     })
   }
 
-  toggleDisplay = () => {
-    console.log("t is for toggle")
-    switch (this.state.display) {
-      case "saved":
-        return <Storage jokes={this.state.jokes} giphys={this.state.giphys} />
-      case "container":
-        return <Container saveGiphy={this.saveGiphy} saveJoke={this.saveJoke} showSavedItems={this.showSavedItems}/>
-      default:
-        console.log("Heyyyyyy")
-    }
-  }
+  // toggleDisplay = () => {
+  //   console.log("t is for toggle")
+  //   switch (this.state.display) {
+  //     case "saved":
+  //       return <Storage jokes={this.state.jokes} giphys={this.state.giphys} />
+  //     case "container":
+  //       return <Container saveGiphy={this.saveGiphy} saveJoke={this.saveJoke} showSavedItems={this.showSavedItems}/>
+  //     default:
+  //       console.log("Heyyyyyy")
+  //   }
+  // }
 
   render() {
     return (
@@ -64,14 +54,12 @@ class App extends Component {
         
         <Router>
           <div>
-            <Route exact path="/random" render={() => <Container jokes={this.state.jokes} giphys={this.state.giphys}/>}/>
+            <Route exact path="/" render={() => <Container saveGiphy={this.saveGiphy} saveJoke={this.saveJoke}/>}/>
             <Route exact path="/savedItems" render={() => <Storage jokes={this.state.jokes} giphys={this.state.giphys}/>}/>
+            <Link to='/'><button>Random Jokes n Giphs</button></Link>
+            <Link to='/savedItems'><button>Saved Jokes n Giphs</button></Link>
           </div>
         </Router>
-        
-        
-        {this.toggleDisplay()}
-
 
       </div>
     );
