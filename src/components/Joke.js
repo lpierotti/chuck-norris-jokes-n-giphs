@@ -3,7 +3,7 @@ import React from 'react';
 const Joke = (props) => {
 	const buttons = []
 	for (var key in props.clickOptions) {
-		buttons.push(<button key={key} name="joke" onClick={props.clickOptions[key]}>{key}</button>)
+		buttons.push(<button key={key} value={props.joke} name="joke" onClick={props.clickOptions[key]}>{key}</button>)
 	}
 
   return (

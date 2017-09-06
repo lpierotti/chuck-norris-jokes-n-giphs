@@ -9,7 +9,7 @@ class Container extends React.Component {
 			currentJoke: null,
 			currentGiphy: null,
 			clickOptions: {
-				next: this.reload, 
+				next: this.reload,
 				save: this.handleSave
 			}
 		}
@@ -46,7 +46,7 @@ class Container extends React.Component {
 			case "joke":
 				this.handleSaveJoke()
 			break;
-			default: 
+			default:
 				console.log("hiiiiii")
 		}
 	}
@@ -57,7 +57,7 @@ class Container extends React.Component {
 
 	handleSaveGiphy = () => {
 		this.props.saveGiphy(this.state.currentGiphy)
-	} 
+	}
 
 
 	render(){
